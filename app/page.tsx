@@ -14,7 +14,6 @@ interface Question {
   level: "kids" | "advanced" | "MARVEL"
 }
 
-// 🎯 ADD YOUR QUESTIONS HERE - Easy to expand!
 const allQuestions: Question[] = [
   // KIDS LEVEL - Basic Education
   { id: 1, question: "What is 2 plus 2?", answer: "four", level: "kids" },
@@ -44,6 +43,9 @@ const allQuestions: Question[] = [
   { id: 23, question: "What is the chemical symbol for gold?", answer: "au", level: "advanced" },
   { id: 24, question: "Who was the first president of the United States?", answer: "george washington", level: "advanced" },
   { id: 25, question: "What is the square root of 64?", answer: "eight", level: "advanced" },
+
+  // MARVEL trivia questions
+
 ]
 
 export default function Speak2Learn() {
@@ -347,7 +349,7 @@ export default function Speak2Learn() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("MARVEL")}>
               <CardHeader>
-                <CardTitle className="text-center text-3xl">🎓 Advanced Level</CardTitle>
+                <CardTitle className="text-center text-3xl"> ⍟ ⎊ ⧗ MARVEL TRIVIA ✇ ϟ ➳ </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-center text-gray-600 mb-4">
