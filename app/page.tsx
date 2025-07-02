@@ -353,7 +353,7 @@ export default function Speak2Learn() {
               </CardHeader>
               <CardContent>
                 <p className="text-center text-gray-600 mb-4">
-                  HI Trivia!!
+                  MARVEL Trivia!!
                 </p>
                 <div className="text-sm text-gray-500">
                   <p>• Test your MARVEL knowledge</p>
