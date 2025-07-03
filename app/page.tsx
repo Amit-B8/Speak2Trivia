@@ -11,40 +11,60 @@ interface Question {
   id: number
   question: string
   answer: string
-  level: "kids" | "advanced" | "MARVEL"
+  level: "Harry Potter" | "Hunger Games" | "MARVEL"
 }
 
 const allQuestions: Question[] = [
-  // KIDS LEVEL - Basic Education
-  { id: 1, question: "What is 2 plus 2?", answer: "four", level: "kids" },
-  { id: 2, question: "What letter comes after C?", answer: "d", level: "kids" },
-  { id: 3, question: "How many legs does a spider have?", answer: "eight", level: "kids" },
-  { id: 4, question: "What color do you get when you mix red and blue?", answer: "purple", level: "kids" },
-  { id: 5, question: "What is 5 plus 3?", answer: "eight", level: "kids" },
-  { id: 6, question: "What letter comes before F?", answer: "e", level: "kids" },
-  { id: 7, question: "How many days are in a week?", answer: "seven", level: "kids" },
-  { id: 8, question: "What is 10 minus 3?", answer: "seven", level: "kids" },
-  { id: 9, question: "What shape has 3 sides?", answer: "triangle", level: "kids" },
-  { id: 10, question: "What is 6 plus 4?", answer: "ten", level: "kids" },
-  { id: 11, question: "What letter comes after G?", answer: "h", level: "kids" },
-  { id: 12, question: "How many fingers do you have on one hand?", answer: "five", level: "kids" },
-  { id: 13, question: "What is 9 minus 4?", answer: "five", level: "kids" },
-  { id: 14, question: "What color do you get when you mix yellow and red?", answer: "orange", level: "kids" },
-  { id: 15, question: "What is 3 times 2?", answer: "six", level: "kids" },
+  // Harry Potter LEVEL -
+  { id: 1, question: "What house at Hogwarts does Harry belong to?", answer: "Gryffindor", level: "Harry Potter" },
+  { id: 2, question: "What is the name of Harry’s owl?", answer: "Hedwig", level: "Harry Potter" },
+  { id: 3, question: "Who is the headmaster of Hogwarts?", answer: "Dumbledore", level: "Harry Potter" },
+  { id: 4, question: "What position does Harry play in Quidditch?", answer: "Seeker", level: "Harry Potter" },
+  { id: 5, question: "What is the name of the three-headed dog?", answer: "Fluffy", level: "Harry Potter" },
+  { id: 6, question: "What spell is used to disarm an opponent?", answer: "Expelliarmus", level: "Harry Potter" },
+  { id: 7, question: "What form does Harry’s Patronus take?", answer: "Stag", level: "Harry Potter" },
+  { id: 8, question: "What is Lord Voldemort’s real name?", answer: "Tom Riddle", level: "Harry Potter" },
+  { id: 9, question: "Who is Hermione’s cat?", answer: "Crookshanks", level: "Harry Potter" },
+  { id: 10, question: "What platform do you use to board the Hogwarts Express?", answer: "9 3/4", level: "Harry Potter" },
+  { id: 11, question: "Who teaches Potions at Hogwarts?", answer: "Snape", level: "Harry Potter" },
+  { id: 12, question: "What is the name of Hagrid’s giant spider?", answer: "Aragog", level: "Harry Potter" },
+  { id: 13, question: "What is Dumbledore’s full name?", answer: "Albus Percival Wulfric Brian Dumbledore", level: "Harry Potter" },
+  { id: 14, question: "What Horcrux does Harry destroy with a basilisk fang?", answer: "Tom Riddle’s diary", level: "Harry Potter" },
+  { id: 15, question: "Who kills Dumbledore?", answer: "Snape", level: "Harry Potter" },
 
-  // ADVANCED LEVEL - Higher Education
-  { id: 16, question: "What is the capital of France?", answer: "paris", level: "advanced" },
-  { id: 17, question: "Who wrote Romeo and Juliet?", answer: "shakespeare", level: "advanced" },
-  { id: 18, question: "What is 15 times 4?", answer: "sixty", level: "advanced" },
-  { id: 19, question: "What gas do plants absorb during photosynthesis?", answer: "carbon dioxide", level: "advanced" },
-  { id: 20, question: "Who painted the Mona Lisa?", answer: "leonardo da vinci", level: "advanced" },
-  { id: 21, question: "What is the largest planet in our solar system?", answer: "jupiter", level: "advanced" },
-  { id: 22, question: "What is 144 divided by 12?", answer: "twelve", level: "advanced" },
-  { id: 23, question: "What is the chemical symbol for gold?", answer: "au", level: "advanced" },
-  { id: 24, question: "Who was the first president of the United States?", answer: "george washington", level: "advanced" },
-  { id: 25, question: "What is the square root of 64?", answer: "eight", level: "advanced" },
+  // Hunger Games Level - 
+  { id: 1, question: "Who is the main female protagonist?", answer: "Katniss Everdeen", level: "Hunger Games" },
+  { id: 2, question: "What district is Katniss from?", answer: "District 12", level: "Hunger Games" },
+  { id: 3, question: "What is the name of Katniss’s younger sister?", answer: "Prim", level: "Hunger Games" },
+  { id: 4, question: "What weapon does Katniss use?", answer: "Bow and arrow", level: "Hunger Games" },
+  { id: 5, question: "Who is Katniss’s best friend in District 12?", answer: "Gale", level: "Hunger Games" },
+  { id: 6, question: "What is the name of the annual deadly event?", answer: "The Hunger Games", level: "Hunger Games" },
+  { id: 7, question: "What is Peeta’s talent?", answer: "Baking", level: "Hunger Games" },
+  { id: 8, question: "What is the name of the Capitol’s leader?", answer: "President Snow", level: "Hunger Games" },
+  { id: 9, question: "Who mentors Katniss and Peeta?", answer: "Haymitch", level: "Hunger Games" },
+  { id: 10, question: "What is the symbol of the rebellion?", answer: "Mockingjay", level: "Hunger Games" },
+  { id: 11, question: "What poison does Katniss use to threaten the Capitol?", answer: "Nightlock", level: "Hunger Games" },
+  { id: 12, question: "Who is the stylist for Katniss?", answer: "Cinna", level: "Hunger Games" },
+  { id: 13, question: "Who wins the 74th Hunger Games?", answer: "Katniss and Peeta", level: "Hunger Games" },
+  { id: 14, question: "What are the names of the gamekeepers?", answer: "Seneca Crane", level: "Hunger Games" },
+  { id: 15, question: "What is the Capitol's method of punishment for rebels?", answer: "The Hunger Games", level: "Hunger Games" },
 
-  // MARVEL trivia questions
+  // MARVEL trivia questions -
+  { id: 1, question: "Who is Iron Man’s real identity?", answer: "Tony Stark", level: "MARVEL" },
+  { id: 2, question: "What is Captain America’s shield made of?", answer: "Vibranium", level: "MARVEL" },
+  { id: 3, question: "What is Thor’s hammer called?", answer: "Mjolnir", level: "MARVEL" },
+  { id: 4, question: "Who is the villain in Avengers: Infinity War?", answer: "Thanos", level: "MARVEL" },
+  { id: 5, question: "Which Infinity Stone does Vision have?", answer: "Mind Stone", level: "MARVEL" },
+  { id: 6, question: "Who is Spider-Man’s alter ego?", answer: "Peter Parker", level: "MARVEL" },
+  { id: 7, question: "Who leads the Guardians of the Galaxy?", answer: "Star-Lord", level: "MARVEL" },
+  { id: 8, question: "What country is Black Panther from?", answer: "Wakanda", level: "MARVEL" },
+  { id: 9, question: "What is the Hulk’s real name?", answer: "Bruce Banner", level: "MARVEL" },
+  { id: 10, question: "What’s Doctor Strange’s profession before becoming a sorcerer?", answer: "Surgeon", level: "MARVEL" },
+  { id: 11, question: "What is the name of Iron Man’s AI assistant?", answer: "JARVIS", level: "MARVEL" },
+  { id: 12, question: "Who is Natasha Romanoff?", answer: "Black Widow", level: "MARVEL" },
+  { id: 13, question: "What organization does Nick Fury lead?", answer: "S.H.I.E.L.D.", level: "MARVEL" },
+  { id: 14, question: "Who is Loki’s brother?", answer: "Thor", level: "MARVEL" },
+  { id: 15, question: "What is the name of the final Avengers movie?", answer: "Endgame", level: "MARVEL" },
 
 ]
 
@@ -55,7 +75,7 @@ export default function Speak2Learn() {
   const [isListening, setIsListening] = useState(false)
   const [transcript, setTranscript] = useState("")
   const [feedback, setFeedback] = useState("")
-  const [gameLevel, setGameLevel] = useState<"kids" | "advanced" | "MARVEL" | null>(null)
+  const [gameLevel, setGameLevel] = useState<"Harry Potter" | "Hunger Games" | "MARVEL" | null>(null)
   const [recognition, setRecognition] = useState<any>(null)
   const [isComplete, setIsComplete] = useState(false)
   const [usedQuestions, setUsedQuestions] = useState<number[]>([])
@@ -114,7 +134,7 @@ export default function Speak2Learn() {
     }
   }
 
-  const startGame = (level: "kids" | "advanced" | "MARVEL") => {
+  const startGame = (level: "Harry Potter" | "Hunger Games" | "MARVEL") => {
     setGameLevel(level)
     setScore(0)
     setTotalQuestions(0)
@@ -313,36 +333,30 @@ export default function Speak2Learn() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("kids")}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("Harry Potter")}>
               <CardHeader>
-                <CardTitle className="text-center text-3xl">👶 Kids Level</CardTitle>
+                <CardTitle className="text-center text-3xl">Harry Potter Level</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-center text-gray-600 mb-4">
-                  Perfect for young learners! Basic math, alphabet, colors, and simple questions.
+                  Perfect for testing your Harry Potter knowledge
                 </p>
                 <div className="text-sm text-gray-500">
-                  <p>• Simple addition (2+2)</p>
-                  <p>• Alphabet letters</p>
-                  <p>• Colors and shapes</p>
-                  <p>• Basic counting</p>
+                  <p>• Answer Some Harry Potter Questions</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("advanced")}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("Hunger Games")}>
               <CardHeader>
-                <CardTitle className="text-center text-3xl">🎓 Advanced Level</CardTitle>
+                <CardTitle className="text-center text-3xl">Hunger Games Level</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-center text-gray-600 mb-4">
                   Challenge yourself! Geography, history, science, and complex math.
                 </p>
                 <div className="text-sm text-gray-500">
-                  <p>• World capitals</p>
-                  <p>• Historical figures</p>
-                  <p>• Science facts</p>
-                  <p>• Complex math</p>
+                  <p>• Answer Some Hunger Games Questions</p>
                 </div>
               </CardContent>
             </Card>
@@ -411,7 +425,7 @@ export default function Speak2Learn() {
               Score: {score}/10
             </Badge>
             <Badge variant="secondary">
-              {gameLevel === "kids" ? "👶 Kids Level" : "🎓 Advanced Level"}
+              {gameLevel === "Harry Potter" ? "Harry Potter Level" : "Hunger Games Level"}
             </Badge>
           </div>
           <Button variant="outline" onClick={resetGame}>
