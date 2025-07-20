@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Mic, MicOff, Volume2, RotateCcw, Trophy, Keyboard } from 'lucide-react'
+import { Mic, MicOff, Volume2, RotateCcw, Trophy, Keyboard} from 'lucide-react'
 
 interface Question {
   id: number
@@ -329,47 +329,47 @@ export default function Speak2Learn() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-2">🎤 Speak2Trivia</h1>
-            <p className="text-lg text-gray-600">Choose your learning level!</p>
+            <p className="text-lg text-gray-600">Choose your trivia level!</p>
           </div>
-
+  
           <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("Harry Potter")}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white" style={{ backgroundImage: "url('/HarryPotterBackground.jpg')" }} onClick={() => startGame("Harry Potter")}>
               <CardHeader>
                 <CardTitle className="text-center text-3xl">Harry Potter Level</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-center text-gray-600 mb-4">
+                <p className="text-center text-white-600 mb-4">
                   Perfect for testing your Harry Potter knowledge
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-white-500">
                   <p>• Answer Some Harry Potter Questions</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("Hunger Games")}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white" style={{ backgroundImage: "url('/HungerGamesBackground.jpg')" }} onClick={() => startGame("Hunger Games")}>
               <CardHeader>
                 <CardTitle className="text-center text-3xl">Hunger Games Level</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-center text-gray-600 mb-4">
-                  Challenge yourself! Geography, history, science, and complex math.
+                <p className="text-center text-whtie-600 mb-4">
+                  Test your Hunger Games knowledge.
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-white-500">
                   <p>• Answer Some Hunger Games Questions</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => startGame("MARVEL")}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white" style={{ backgroundImage: "url('/MARVELBackground.jpg')" }} onClick={() => startGame("MARVEL")}>
               <CardHeader>
                 <CardTitle className="text-center text-3xl"> ⍟ ⎊ ⧗ MARVEL TRIVIA ✇ ϟ ➳ </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-center text-gray-600 mb-4">
+                <p className="text-center text-white-600 mb-4">
                   MARVEL Trivia!!
                 </p>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-white-500">
                   <p>• Test your MARVEL knowledge</p>
                 </div>
               </CardContent>
