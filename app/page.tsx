@@ -14,10 +14,66 @@ interface Question {
   id: number
   question: string
   answer: string
-  level: "Harry Potter" | "Hunger Games" | "MARVEL"
+  level: "Harry Potter" | "Hunger Games" | "MARVEL" | "Math"
 }
 
+interface Quiz {
+  level: "Harry Potter" | "Hunger Games" | "MARVEL" | "Math"
+  name: string
+  description: string
+  backgroundImage: string
+  inputMode: "speak-type" | "type-only" // New property
+}
+
+const quizzes: Quiz[] = [
+  {
+    level: "Math",
+    name: "Simple Math",
+    description: "Easy addition problems - great for voice!",
+    backgroundImage: "/MathBackground.jpg",
+    inputMode: "speak-type",
+  },
+  {
+    level: "Harry Potter",
+    name: "Harry Potter Level",
+    description: "Test your Harry Potter knowledge",
+    backgroundImage: "/HarryPotterBackground.jpg",
+    inputMode: "type-only",
+  },
+  {
+    level: "Hunger Games",
+    name: "Hunger Games Level",
+    description: "Test your Hunger Games knowledge",
+    backgroundImage: "/HungerGamesBackground.jpg",
+    inputMode: "type-only",
+  },
+  {
+    level: "MARVEL",
+    name: "⍟ ⎊ ⧗ MARVEL TRIVIA ✇ ϟ ➳",
+    description: "MARVEL Trivia!!",
+    backgroundImage: "/MARVELBackground.jpg",
+    inputMode: "type-only",
+  },
+]
+
 const allQuestions: Question[] = [
+  // Math LEVEL -
+  { id: 1, question: "What is 3 plus 3?", answer: "6", level: "Math" },
+  { id: 2, question: "What is 5 plus 2?", answer: "7", level: "Math" },
+  { id: 3, question: "What is 4 plus 4?", answer: "8", level: "Math" },
+  { id: 4, question: "What is 10 minus 5?", answer: "5", level: "Math" },
+  { id: 5, question: "What is 2 plus 2?", answer: "4", level: "Math" },
+  { id: 6, question: "What is 9 minus 3?", answer: "6", level: "Math" },
+  { id: 7, question: "What is 7 plus 1?", answer: "8", level: "Math" },
+  { id: 8, question: "What is 6 minus 2?", answer: "4", level: "Math" },
+  { id: 9, question: "What is 8 plus 2?", answer: "10", level: "Math" },
+  { id: 10, question: "What is 5 plus 5?", answer: "10", level: "Math" },
+  { id: 11, question: "What is 9 minus 4?", answer: "5", level: "Math" },
+  { id: 12, question: "What is 3 plus 4?", answer: "7", level: "Math" },
+  { id: 13, question: "What is 10 minus 2?", answer: "8", level: "Math" },
+  { id: 14, question: "What is 1 plus 1?", answer: "2", level: "Math" },
+  { id: 15, question: "What is 6 plus 3?", answer: "9", level: "Math" },
+
   // Harry Potter LEVEL -
   { id: 1, question: "What house at Hogwarts does Harry belong to?", answer: "Gryffindor", level: "Harry Potter" },
   { id: 2, question: "What is the name of Harry's owl?", answer: "Hedwig", level: "Harry Potter" },
@@ -111,7 +167,7 @@ const backgroundItems = [
     id: "blue-bg",
     name: "Blue Background",
     cost: 25,
-    type: "color", 
+    type: "color", // New: type property
     class: "bg-gradient-to-br from-blue-100 to-blue-200",
     description: "Change your background to a cool blue theme!",
   },
@@ -119,7 +175,7 @@ const backgroundItems = [
     id: "green-bg",
     name: "Green Background",
     cost: 25,
-    type: "color", 
+    type: "color", // New: type property
     class: "bg-gradient-to-br from-green-100 to-green-200",
     description: "Change your background to a fresh green theme!",
   },
@@ -127,7 +183,7 @@ const backgroundItems = [
     id: "purple-bg",
     name: "Purple Background",
     cost: 25,
-    type: "color", 
+    type: "color", // New: type property
     class: "bg-gradient-to-br from-purple-100 to-purple-200",
     description: "Change your background to a royal purple theme!",
   },
@@ -139,7 +195,7 @@ const backgroundItems = [
     imageSrc: "/FCBLogo.png", // New: path to your image file
     description: "Show your support with the FCB logo background!", // Description for the shop card
   },
-  // Use this to add more image backgrounds here following the same structure:
+  // You can add more image backgrounds here following the same structure:
   // {
   //   id: "custom-image-bg",
   //   name: "My Custom Image",
@@ -157,7 +213,7 @@ export default function Speak2Learn() {
   const [isListening, setIsListening] = useState(false)
   const [transcript, setTranscript] = useState("")
   const [feedback, setFeedback] = useState("")
-  const [gameLevel, setGameLevel] = useState<"Harry Potter" | "Hunger Games" | "MARVEL" | null>(null)
+  const [gameLevel, setGameLevel] = useState<"Harry Potter" | "Hunger Games" | "MARVEL" | "Math" | null>(null)
   const [recognition, setRecognition] = useState<any>(null)
   const [isComplete, setIsComplete] = useState(false)
   const [usedQuestions, setUsedQuestions] = useState<number[]>([])
@@ -247,7 +303,7 @@ export default function Speak2Learn() {
     }
   }
 
-  const startGame = (level: "Harry Potter" | "Hunger Games" | "MARVEL") => {
+  const startGame = (level: "Harry Potter" | "Hunger Games" | "MARVEL" | "Math") => {
     setGameLevel(level)
     setScore(0)
     setTotalQuestions(0)
@@ -264,6 +320,7 @@ export default function Speak2Learn() {
 
   const getNextQuestion = (level: string) => {
     const availableQuestions = allQuestions.filter((q) => q.level === level && !usedQuestions.includes(q.id))
+    const currentQuiz = quizzes.find((q) => q.level === level)
 
     if (availableQuestions.length > 0) {
       const randomQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)]
@@ -272,8 +329,19 @@ export default function Speak2Learn() {
       setFeedback("")
       setTranscript("")
       setIsProcessing(false)
-      setShowTypeInput(false)
       setTypedAnswer("")
+
+      // MODIFICATION: Check if quiz is type-only and show input automatically
+      if (currentQuiz?.inputMode === "type-only") {
+        setShowTypeInput(true)
+        setTimeout(() => {
+          if (inputRef.current) {
+            inputRef.current.focus()
+          }
+        }, 100)
+      } else {
+        setShowTypeInput(false)
+      }
 
       if (voiceTimeout) {
         clearTimeout(voiceTimeout)
@@ -292,6 +360,13 @@ export default function Speak2Learn() {
   }
 
   const startListening = () => {
+    const currentQuiz = quizzes.find((q) => q.level === gameLevel)
+    if (currentQuiz?.inputMode === "type-only") {
+      setFeedback("This quiz is type-only. Please type your answer below.")
+      setShowTypeInput(true)
+      return
+    }
+
     if (recognition && !isListening && !isProcessing) {
       setIsListening(true)
       setTranscript("")
@@ -341,19 +416,25 @@ export default function Speak2Learn() {
     setIsProcessing(true)
     console.log("Checking answer:", userAnswer, "vs", currentQuestion.answer)
 
+    // NEW CODE TO REPLACE IT
     const correctAnswer = currentQuestion.answer.toLowerCase()
-    const userAnswerClean = userAnswer.toLowerCase().trim()
+    let userAnswerClean = userAnswer.toLowerCase().trim()
+
+    // Map words to numbers so "six" becomes "6" automatically
+    const numberMap: { [key: string]: string } = {
+      "one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+      "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10", "zero": "0"
+    }
+
+    // If the user typed a word like "six", swap it for "6"
+    if (numberMap[userAnswerClean]) {
+      userAnswerClean = numberMap[userAnswerClean]
+    }
 
     const isCorrect =
       userAnswerClean === correctAnswer ||
       userAnswerClean.includes(correctAnswer) ||
-      correctAnswer.includes(userAnswerClean) ||
-      (correctAnswer === "four" && (userAnswerClean.includes("4") || userAnswerClean === "four")) ||
-      (correctAnswer === "eight" && (userAnswerClean.includes("8") || userAnswerClean === "eight")) ||
-      (correctAnswer === "seven" && (userAnswerClean.includes("7") || userAnswerClean === "seven")) ||
-      (correctAnswer === "ten" && (userAnswerClean.includes("10") || userAnswerClean === "ten")) ||
-      (correctAnswer === "five" && (userAnswerClean.includes("5") || userAnswerClean === "five")) ||
-      (correctAnswer === "six" && (userAnswerClean.includes("6") || userAnswerClean === "six"))
+      correctAnswer.includes(userAnswerClean)
 
     if (isCorrect) {
       const newScore = score + 1
@@ -421,7 +502,7 @@ export default function Speak2Learn() {
       clearTimeout(voiceTimeout)
       setVoiceTimeout(null)
     }
-    // Stop any ongoing speech when resetting the game
+    // ADD THIS LINE: Stop any ongoing speech when resetting the game
     if ("speechSynthesis" in window) {
       speechSynthesis.cancel()
     }
@@ -584,6 +665,9 @@ export default function Speak2Learn() {
 
   // Main Menu Screen
   if (!gameLevel) {
+    const speakTypeQuizzes = quizzes.filter((q) => q.inputMode === "speak-type")
+    const typeOnlyQuizzes = quizzes.filter((q) => q.inputMode === "type-only")
+
     return (
       <div className="min-h-screen relative p-4">
         {" "}
@@ -616,54 +700,56 @@ export default function Speak2Learn() {
             <h1 className="text-4xl font-bold text-gray-800 mb-2">🎤 Speak2Trivia</h1>
             <p className="text-lg text-gray-600">Choose your trivia level!</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white"
-              style={{ backgroundImage: "url('/HarryPotterBackground.jpg')" }}
-              onClick={() => startGame("Harry Potter")}
-            >
-              <CardHeader>
-                <CardTitle className="text-center text-3xl">Harry Potter Level</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-center text-white-600 mb-4">Perfect for testing your Harry Potter knowledge</p>
-                <div className="text-sm text-white-500">
-                  <p>• Answer Some Harry Potter Questions</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white"
-              style={{ backgroundImage: "url('/HungerGamesBackground.jpg')" }}
-              onClick={() => startGame("Hunger Games")}
-            >
-              <CardHeader>
-                <CardTitle className="text-center text-3xl">Hunger Games Level</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-center text-whtie-600 mb-4">Test your Hunger Games knowledge.</p>
-                <div className="text-sm text-white-500">
-                  <p>• Answer Some Hunger Games Questions</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card
-              className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white"
-              style={{ backgroundImage: "url('/MARVELBackground.jpg')" }}
-              onClick={() => startGame("MARVEL")}
-            >
-              <CardHeader>
-                <CardTitle className="text-center text-3xl"> ⍟ ⎊ ⧗ MARVEL TRIVIA ✇ ϟ ➳ </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-center text-white-600 mb-4">MARVEL Trivia!!</p>
-                <div className="text-sm text-white-500">
-                  <p>• Test your MARVEL knowledge</p>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="mb-12">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Mic className="w-5 h-5 text-blue-600" />
+              <h2 className="text-2xl font-bold text-gray-800">Speak or Type Quizzes</h2>
+              <Keyboard className="w-5 h-5 text-blue-600" />
+            </div>
+            <p className="text-center text-gray-600 mb-6">Simple questions - perfect for voice recognition!</p>
+            <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+              {speakTypeQuizzes.map((quiz) => (
+                <Card
+                  key={quiz.level}
+                  className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white"
+                  style={{ backgroundImage: `url('${quiz.backgroundImage}')` }}
+                  onClick={() => startGame(quiz.level)}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-center text-3xl">{quiz.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-center text-white mb-4">{quiz.description}</p>
+                    {/* MODIFICATION: Removed the Badge Div from here */}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Keyboard className="w-5 h-5 text-purple-600" />
+              <h2 className="text-2xl font-bold text-gray-800">Type-Only Quizzes</h2>
+            </div>
+            <p className="text-center text-gray-600 mb-6">More complex questions - typing recommended</p>
+            <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+              {typeOnlyQuizzes.map((quiz) => (
+                <Card
+                  key={quiz.level}
+                  className="hover:shadow-lg transition-shadow cursor-pointer bg-cover bg-center h-64 text-white"
+                  style={{ backgroundImage: `url('${quiz.backgroundImage}')` }}
+                  onClick={() => startGame(quiz.level)}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-center text-3xl">{quiz.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-center text-white mb-4">{quiz.description}</p>
+                    {/* MODIFICATION: Removed the Badge Div from here */}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -716,7 +802,10 @@ export default function Speak2Learn() {
     )
   }
 
-  // Game Playing Screen
+  // Game Playing Screen (Main Render)
+  // Helper to find current quiz config for render
+  const currentQuizConfig = quizzes.find((q) => q.level === gameLevel)
+
   return (
     <div className="min-h-screen relative p-4">
       {" "}
@@ -742,7 +831,9 @@ export default function Speak2Learn() {
                 ? "Harry Potter Level"
                 : gameLevel === "Hunger Games"
                   ? "Hunger Games Level"
-                  : "MARVEL Level"}
+                  : gameLevel === "MARVEL"
+                    ? "MARVEL Level"
+                    : "Math Level"}
             </Badge>
           </div>
           <Button variant="outline" onClick={resetGame}>
@@ -770,27 +861,30 @@ export default function Speak2Learn() {
               <h2 className="text-xl font-semibold mb-4">{currentQuestion.question}</h2>
 
               <div className="space-y-4">
-                <Button
-                  onClick={isListening ? stopListening : startListening}
-                  disabled={isProcessing}
-                  className={`w-full py-6 text-lg ${
-                    isListening ? "bg-red-500 hover:bg-red-600 animate-pulse" : "bg-green-500 hover:bg-green-600"
-                  } ${isProcessing ? "opacity-50" : ""}`}
-                >
-                  {isProcessing ? (
-                    <>Processing...</>
-                  ) : isListening ? (
-                    <>
-                      <MicOff className="w-6 h-6 mr-2" />
-                      Stop Listening (Auto-type in {Math.ceil(voiceTimeout ? 10 : 0)}s)
-                    </>
-                  ) : (
-                    <>
-                      <Mic className="w-6 h-6 mr-2" />
-                      Speak Your Answer
-                    </>
-                  )}
-                </Button>
+                {/* MODIFICATION: Only show Speak Button if NOT type-only */}
+                {currentQuizConfig?.inputMode !== "type-only" && (
+                  <Button
+                    onClick={isListening ? stopListening : startListening}
+                    disabled={isProcessing}
+                    className={`w-full py-6 text-lg ${
+                      isListening ? "bg-red-500 hover:bg-red-600 animate-pulse" : "bg-green-500 hover:bg-green-600"
+                    } ${isProcessing ? "opacity-50" : ""}`}
+                  >
+                    {isProcessing ? (
+                      <>Processing...</>
+                    ) : isListening ? (
+                      <>
+                        <MicOff className="w-6 h-6 mr-2" />
+                        Stop Listening (Auto-type in {Math.ceil(voiceTimeout ? 10 : 0)}s)
+                      </>
+                    ) : (
+                      <>
+                        <Mic className="w-6 h-6 mr-2" />
+                        Speak Your Answer
+                      </>
+                    )}
+                  </Button>
+                )}
 
                 {/* Typing Input - Shows after 10 seconds or on demand */}
                 {showTypeInput && (
@@ -814,8 +908,8 @@ export default function Speak2Learn() {
                   </div>
                 )}
 
-                {/* Manual typing button */}
-                {!showTypeInput && !isListening && (
+                {/* Manual typing button - Hide if type-only (input already visible) */}
+                {!showTypeInput && !isListening && currentQuizConfig?.inputMode !== "type-only" && (
                   <Button
                     variant="outline"
                     onClick={() => {
