@@ -10,201 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Mic, MicOff, Volume2, RotateCcw, Trophy, Keyboard, ShoppingBag, Coins } from "lucide-react"
 
-interface Question {
-  id: number
-  question: string
-  answer: string
-  level: "Harry Potter" | "Hunger Games" | "MARVEL" | "Math"
-}
-
-interface Quiz {
-  level: "Harry Potter" | "Hunger Games" | "MARVEL" | "Math"
-  name: string
-  description: string
-  backgroundImage: string
-  inputMode: "speak-type" | "type-only" // New property
-}
-
-const quizzes: Quiz[] = [
-  {
-    level: "Math",
-    name: "Simple Math",
-    description: "Easy addition problems - great for voice!",
-    backgroundImage: "/MathBackground.jpg",
-    inputMode: "speak-type",
-  },
-  {
-    level: "Harry Potter",
-    name: "Harry Potter Level",
-    description: "Test your Harry Potter knowledge",
-    backgroundImage: "/HarryPotterBackground.jpg",
-    inputMode: "type-only",
-  },
-  {
-    level: "Hunger Games",
-    name: "Hunger Games Level",
-    description: "Test your Hunger Games knowledge",
-    backgroundImage: "/HungerGamesBackground.jpg",
-    inputMode: "type-only",
-  },
-  {
-    level: "MARVEL",
-    name: "⍟ ⎊ ⧗ MARVEL TRIVIA ✇ ϟ ➳",
-    description: "MARVEL Trivia!!",
-    backgroundImage: "/MARVELBackground.jpg",
-    inputMode: "type-only",
-  },
-]
-
-const allQuestions: Question[] = [
-  // Math LEVEL -
-  { id: 1, question: "What is 3 plus 3?", answer: "6", level: "Math" },
-  { id: 2, question: "What is 5 plus 2?", answer: "7", level: "Math" },
-  { id: 3, question: "What is 4 plus 4?", answer: "8", level: "Math" },
-  { id: 4, question: "What is 10 minus 5?", answer: "5", level: "Math" },
-  { id: 5, question: "What is 2 plus 2?", answer: "4", level: "Math" },
-  { id: 6, question: "What is 9 minus 3?", answer: "6", level: "Math" },
-  { id: 7, question: "What is 7 plus 1?", answer: "8", level: "Math" },
-  { id: 8, question: "What is 6 minus 2?", answer: "4", level: "Math" },
-  { id: 9, question: "What is 8 plus 2?", answer: "10", level: "Math" },
-  { id: 10, question: "What is 5 plus 5?", answer: "10", level: "Math" },
-  { id: 11, question: "What is 9 minus 4?", answer: "5", level: "Math" },
-  { id: 12, question: "What is 3 plus 4?", answer: "7", level: "Math" },
-  { id: 13, question: "What is 10 minus 2?", answer: "8", level: "Math" },
-  { id: 14, question: "What is 1 plus 1?", answer: "2", level: "Math" },
-  { id: 15, question: "What is 6 plus 3?", answer: "9", level: "Math" },
-
-  // Harry Potter LEVEL -
-  { id: 1, question: "What house at Hogwarts does Harry belong to?", answer: "Gryffindor", level: "Harry Potter" },
-  { id: 2, question: "What is the name of Harry's owl?", answer: "Hedwig", level: "Harry Potter" },
-  { id: 3, question: "Who is the headmaster of Hogwarts?", answer: "Dumbledore", level: "Harry Potter" },
-  { id: 4, question: "What position does Harry play in Quidditch?", answer: "Seeker", level: "Harry Potter" },
-  { id: 5, question: "What is the name of the three-headed dog?", answer: "Fluffy", level: "Harry Potter" },
-  { id: 6, question: "What spell is used to disarm an opponent?", answer: "Expelliarmus", level: "Harry Potter" },
-  { id: 7, question: "What form does Harry's Patronus take?", answer: "Stag", level: "Harry Potter" },
-  { id: 8, question: "What is Lord Voldemort's real name?", answer: "Tom Riddle", level: "Harry Potter" },
-  { id: 9, question: "Who is Hermione's cat?", answer: "Crookshanks", level: "Harry Potter" },
-  {
-    id: 10,
-    question: "What platform do you use to board the Hogwarts Express?",
-    answer: "9 3/4",
-    level: "Harry Potter",
-  },
-  { id: 11, question: "Who teaches Potions at Hogwarts?", answer: "Snape", level: "Harry Potter" },
-  { id: 12, question: "What is the name of Hagrid's giant spider?", answer: "Aragog", level: "Harry Potter" },
-  {
-    id: 13,
-    question: "What is Dumbledore's full name?",
-    answer: "Albus Percival Wulfric Brian Dumbledore",
-    level: "Harry Potter",
-  },
-  {
-    id: 14,
-    question: "What Horcrux does Harry destroy with a basilisk fang?",
-    answer: "Tom Riddle's diary",
-    level: "Harry Potter",
-  },
-  { id: 15, question: "Who kills Dumbledore?", answer: "Snape", level: "Harry Potter" },
-
-  // Hunger Games Level -
-  { id: 1, question: "Who is the main female protagonist?", answer: "Katniss Everdeen", level: "Hunger Games" },
-  { id: 2, question: "What district is Katniss from?", answer: "District 12", level: "Hunger Games" },
-  { id: 3, question: "What is the name of Katniss's younger sister?", answer: "Prim", level: "Hunger Games" },
-  { id: 4, question: "What weapon does Katniss use?", answer: "Bow and arrow", level: "Hunger Games" },
-  { id: 5, question: "Who is Katniss's best friend in District 12?", answer: "Gale", level: "Hunger Games" },
-  {
-    id: 6,
-    question: "What is the name of the annual deadly event?",
-    answer: "The Hunger Games",
-    level: "Hunger Games",
-  },
-  { id: 7, question: "What is Peeta's talent?", answer: "Baking", level: "Hunger Games" },
-  { id: 8, question: "What is the name of the Capitol's leader?", answer: "President Snow", level: "Hunger Games" },
-  { id: 9, question: "Who mentors Katniss and Peeta?", answer: "Haymitch", level: "Hunger Games" },
-  { id: 10, question: "What is the symbol of the rebellion?", answer: "Mockingjay", level: "Hunger Games" },
-  {
-    id: 11,
-    question: "What poison does Katniss use to threaten the Capitol?",
-    answer: "Nightlock",
-    level: "Hunger Games",
-  },
-  { id: 12, question: "Who is the stylist for Katniss?", answer: "Cinna", level: "Hunger Games" },
-  { id: 13, question: "Who wins the 74th Hunger Games?", answer: "Katniss and Peeta", level: "Hunger Games" },
-  { id: 14, question: "What are the names of the gamekeepers?", answer: "Seneca Crane", level: "Hunger Games" },
-  {
-    id: 15,
-    question: "What is the Capitol's method of punishment for rebels?",
-    answer: "The Hunger Games",
-    level: "Hunger Games",
-  },
-
-  // MARVEL trivia questions -
-  { id: 1, question: "Who is Iron Man's real identity?", answer: "Tony Stark", level: "MARVEL" },
-  { id: 2, question: "What is Captain America's shield made of?", answer: "Vibranium", level: "MARVEL" },
-  { id: 3, question: "What is Thor's hammer called?", answer: "Mjolnir", level: "MARVEL" },
-  { id: 4, question: "Who is the villain in Avengers: Infinity War?", answer: "Thanos", level: "MARVEL" },
-  { id: 5, question: "Which Infinity Stone does Vision have?", answer: "Mind Stone", level: "MARVEL" },
-  { id: 6, question: "Who is Spider-Man's alter ego?", answer: "Peter Parker", level: "MARVEL" },
-  { id: 7, question: "Who leads the Guardians of the Galaxy?", answer: "Star-Lord", level: "MARVEL" },
-  { id: 8, question: "What country is Black Panther from?", answer: "Wakanda", level: "MARVEL" },
-  { id: 9, question: "What is the Hulk's real name?", answer: "Bruce Banner", level: "MARVEL" },
-  {
-    id: 10,
-    question: "What's Doctor Strange's profession before becoming a sorcerer?",
-    answer: "Surgeon",
-    level: "MARVEL",
-  },
-  { id: 11, question: "What is the name of Iron Man's AI assistant?", answer: "JARVIS", level: "MARVEL" },
-  { id: 12, question: "Who is Natasha Romanoff?", answer: "Black Widow", level: "MARVEL" },
-  { id: 13, question: "What organization does Nick Fury lead?", answer: "S.H.I.E.L.D.", level: "MARVEL" },
-  { id: 14, question: "Who is Loki's brother?", answer: "Thor", level: "MARVEL" },
-  { id: 15, question: "What is the name of the final Avengers movie?", answer: "Endgame", level: "MARVEL" },
-]
-
-// Define background items
-const backgroundItems = [
-  {
-    id: "blue-bg",
-    name: "Blue Background",
-    cost: 25,
-    type: "color", // New: type property
-    class: "bg-gradient-to-br from-blue-100 to-blue-200",
-    description: "Change your background to a cool blue theme!",
-  },
-  {
-    id: "green-bg",
-    name: "Green Background",
-    cost: 25,
-    type: "color", // New: type property
-    class: "bg-gradient-to-br from-green-100 to-green-200",
-    description: "Change your background to a fresh green theme!",
-  },
-  {
-    id: "purple-bg",
-    name: "Purple Background",
-    cost: 25,
-    type: "color", // New: type property
-    class: "bg-gradient-to-br from-purple-100 to-purple-200",
-    description: "Change your background to a royal purple theme!",
-  },
-  {
-    id: "fcb-logo-bg", // Unique ID
-    name: "FCB Logo Background", // Display name
-    cost: 100, // Cost in points
-    type: "image", // New: type property set to "image"
-    imageSrc: "/FCBLogo.png", // New: path to your image file
-    description: "Show your support with the FCB logo background!", // Description for the shop card
-  },
-  // You can add more image backgrounds here following the same structure:
-  // {
-  //   id: "custom-image-bg",
-  //   name: "My Custom Image",
-  //   cost: 150,
-  //   type: "image",
-  //   imageSrc: "/path/to/your/image.jpg", // Make sure to place your image in the public folder
-  //   description: "A unique background from your collection!",
-  // },
-]
+import { quizzes, allQuestions, backgroundItems, type Question, type Quiz } from "./data"
 
 export default function Speak2Learn() {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
@@ -213,7 +19,7 @@ export default function Speak2Learn() {
   const [isListening, setIsListening] = useState(false)
   const [transcript, setTranscript] = useState("")
   const [feedback, setFeedback] = useState("")
-  const [gameLevel, setGameLevel] = useState<"Harry Potter" | "Hunger Games" | "MARVEL" | "Math" | null>(null)
+  const [gameLevel, setGameLevel] = useState<string | null>(null)
   const [recognition, setRecognition] = useState<any>(null)
   const [isComplete, setIsComplete] = useState(false)
   const [usedQuestions, setUsedQuestions] = useState<number[]>([])
@@ -303,7 +109,7 @@ export default function Speak2Learn() {
     }
   }
 
-  const startGame = (level: "Harry Potter" | "Hunger Games" | "MARVEL" | "Math") => {
+  const startGame = (level: string) => {
     setGameLevel(level)
     setScore(0)
     setTotalQuestions(0)
@@ -423,7 +229,8 @@ export default function Speak2Learn() {
     // Map words to numbers so "six" becomes "6" automatically
     const numberMap: { [key: string]: string } = {
       "one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
-      "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10", "zero": "0"
+      "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10", "zero": "0", 
+      "eleven": "11", "twelve": "12", "thirteen": "13", "fourteen": "14", "fifteen": "15"
     }
 
     // If the user typed a word like "six", swap it for "6"
@@ -699,6 +506,7 @@ export default function Speak2Learn() {
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-2">🎤 Speak2Trivia</h1>
             <p className="text-lg text-gray-600">Choose your trivia level!</p>
+            <p className="text-lg text-gray-600">Answer questions correctly to earn coins and unlock new backgrounds!</p>
           </div>
           <div className="mb-12">
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -719,8 +527,8 @@ export default function Speak2Learn() {
                     <CardTitle className="text-center text-3xl">{quiz.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-center text-white mb-4">{quiz.description}</p>
-                    {/* MODIFICATION: Removed the Badge Div from here */}
+                    {/* whitespace-pre-line makes the \n breaks actually work */}
+                    <p className="text-center font-bold text-white mb-4 whitespace-pre-line">{quiz.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -744,7 +552,7 @@ export default function Speak2Learn() {
                     <CardTitle className="text-center text-3xl">{quiz.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-center text-white mb-4">{quiz.description}</p>
+                    <p className="text-center text-white font-bold mb-4">{quiz.description}</p>
                     {/* MODIFICATION: Removed the Badge Div from here */}
                   </CardContent>
                 </Card>
